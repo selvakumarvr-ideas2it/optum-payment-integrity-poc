@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome to Healthcare · Health Plan Manager</title>
+<link rel="stylesheet" href="assets/app-shell.css">
+<link rel="stylesheet" href="assets/portal.css">
+<style>
+/* Home-only layout */
+.hero{position:relative;background:#d8eef4;box-shadow:inset 0 3px 6px rgba(0,0,0,.08);height:190px}
+.hero-in{max-width:1200px;height:100%;margin:0 auto;padding:0 90px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.slide{display:none;width:100%;align-items:center;justify-content:space-between;gap:24px}
+.slide.on{display:flex}
+.slide h1{font-size:24px;font-weight:700;color:var(--navy);margin:0 0 14px}
+.slide p{margin:0 0 20px;font-size:var(--fs-md);color:var(--navy)}
+.pill{display:inline-flex;align-items:center;height:30px;padding:0 18px;border:0;border-radius:15px;background:var(--navy-d);color:#fff;font-size:var(--fs-xs);font-weight:700;text-decoration:none;cursor:pointer}
+.pill:hover{background:#0a2058}
+.slide svg{flex:none;width:260px;height:140px}
+.arrow{position:absolute;top:50%;margin-top:-14px;width:28px;height:28px;border-radius:50%;border:1px solid #3a3f47;background:#fff;color:#3a3f47;display:grid;place-items:center;cursor:pointer;padding:0}
+.arrow svg{width:12px;height:12px}.arrow.l{left:36px}.arrow.r{right:36px}
+.dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px}
+.dots button{width:8px;height:8px;padding:0;border-radius:50%;border:1px solid var(--navy);background:#fff;cursor:pointer}
+.dots button.on{background:var(--navy)}
+
+.pulse-row{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:6px 0 12px}
+.pulse-row h2{margin:0;display:flex;align-items:center;gap:10px;font-size:22px;font-weight:400;color:var(--navy)}
+.pulse-row h2 b{font-weight:700}
+.pulse-row h2 svg{width:28px;height:28px}
+.pulse{display:grid;grid-template-columns:minmax(260px,34%) 1fr;gap:28px;border:1px solid #e1e4e9;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:26px 24px;min-height:280px}
+.pulse h3{margin:12px 0 18px;font-size:var(--fs-lg);font-weight:700;color:var(--navy);line-height:1.35}
+.pulse p{margin:0 0 22px;font-size:var(--fs-xs);color:#3a3f47;line-height:1.5}
+.pulse .gen{height:32px;padding:0 20px;border:0;border-radius:16px;background:var(--navy-d);color:#fff;font-size:var(--fs-xs);font-weight:700;cursor:default}
+.ghost{position:relative}
+.ghost svg{width:100%;height:100%;min-height:230px}
+
+@media(max-width:900px){
+  .hero{height:auto;padding:22px 0 34px}.hero-in{padding:0 56px}.slide svg{display:none}
+  .arrow.l{left:12px}.arrow.r{right:12px}.pulse{grid-template-columns:1fr}.ghost{display:none}
+}
+.head{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+.head h1{font-size:28px}
+.search{display:flex;align-items:center;width:236px;max-width:100%;height:34px;padding:0 12px;border:1px solid #c9cdd3;border-radius:4px;background:#fff}
+.search input{flex:1;min-width:0;border:0;outline:0;font:var(--fs-xs) "Segoe UI",Arial,sans-serif;color:#2b2f36;background:none}
+.search svg{width:16px;height:16px;color:var(--plink)}
+h2.group{font-size:18px;margin:0 0 12px}
+.fold{max-width:760px;border:1px solid #e1e4e9;border-radius:18px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px 18px 10px}
+.fold-head{display:flex;align-items:center;gap:12px;width:100%;padding:0 0 10px;border:0;border-bottom:2px solid var(--navy);background:none;cursor:pointer;text-align:left}
+.fold-head svg.ico{width:22px;height:22px;color:var(--orange)}
+.fold-head h3{margin:0;font-size:20px;font-weight:700;color:var(--navy)}
+.fold-head svg.chev{width:12px;height:12px;color:var(--navy);transition:transform .15s}
+.fold-head[aria-expanded=false] svg.chev{transform:rotate(180deg)}
+.rows{list-style:none;margin:6px 0 0;padding:0}
+.rows a{display:flex;align-items:center;gap:12px;padding:9px 6px;border-radius:4px;text-decoration:none}
+.rows a:hover{background:#f0f1f3}
+.rows svg{width:18px;height:18px;flex:none;color:#59616a}
+.rows b{font-size:var(--fs-xs);font-weight:400;text-decoration:underline;color:var(--plink)}
+.empty{margin:10px 6px;color:#737b84;font-size:var(--fs-xs)}
+@media(max-width:900px){.search{width:100%}}
+/* views */
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div id="app-header"></div>
+
+<div id="view-home">
+<section class="hero" aria-roledescription="carousel" aria-label="Welcome">
+  <button class="arrow l" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button>
+  <div class="hero-in">
+    <div class="slide on">
+      <div><h1>Welcome to Healthcare</h1><p>Your reports, your analytics, your way.</p><a class="pill" href="Home.html#explore" data-view="explore">Explore Reports</a></div>
+      <svg viewBox="0 0 260 140" fill="none" aria-hidden="true">
+        <path d="M2 118h130" stroke="#8fb9d6" stroke-width="2"/>
+        <path d="M6 112c14-4 22-18 34-22s24 6 38-8 30-8 44-20v56H6z" fill="#f6cba8" stroke="#f08a4b" stroke-width="2.5"/>
+        <path d="M112 14v62" stroke="#2f6bd6" stroke-width="2"/><circle cx="112" cy="12" r="9" fill="#2f6bd6"/><text x="112" y="16" font-size="11" font-weight="700" text-anchor="middle" fill="#fff" font-family="Segoe UI,Arial">$</text>
+        <circle cx="178" cy="62" r="40" fill="#fff" fill-opacity=".55" stroke="#1B3A8F" stroke-width="8"/>
+        <path d="M150 64h14l8-18 10 34 8-16h14" stroke="#e8573a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M208 92l38 38" stroke="#1B3A8F" stroke-width="12" stroke-linecap="round"/>
+        <path d="M222 76h30" stroke="#e8573a" stroke-width="3" stroke-linecap="round"/><circle cx="228" cy="76" r="3" fill="#e8573a"/>
+      </svg>
+    </div>
+    <div class="slide">
+      <div><h1>Foundation Reporting</h1><p>Open the Payment Integrity Suite to review savings and claims.</p></div>
+      <svg viewBox="0 0 260 140" fill="none" aria-hidden="true"><rect x="40" y="24" width="180" height="104" rx="8" fill="#fff" stroke="#1B3A8F" stroke-width="5"/><path d="M40 52h180M86 52v76" stroke="#1B3A8F" stroke-width="4"/><rect x="100" y="86" width="14" height="30" fill="#2f6bd6"/><rect x="124" y="72" width="14" height="44" fill="#2f6bd6"/><rect x="148" y="94" width="14" height="22" fill="#2f6bd6"/><path d="M98 80l30-14 28 10 40-24" stroke="#f08a4b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="slide">
+      <div><h1>Choose your customer and dataset</h1><p>Pick what every report will use from Explore.</p></div>
+      <svg viewBox="0 0 260 140" fill="none" aria-hidden="true"><rect x="30" y="20" width="96" height="100" rx="8" fill="#fff" stroke="#1B3A8F" stroke-width="5"/><rect x="134" y="20" width="96" height="100" rx="8" fill="#fff" stroke="#1B3A8F" stroke-width="5"/><path d="M46 46h64M46 66h64M46 86h40M150 46h64M150 66h64M150 86h40" stroke="#2f6bd6" stroke-width="5" stroke-linecap="round"/><path d="M200 104l8 8 16-18" stroke="#f08a4b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <button class="arrow r" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+  <div class="dots" role="tablist"><button class="on" type="button" aria-label="Slide 1"></button><button type="button" aria-label="Slide 2"></button><button type="button" aria-label="Slide 3"></button></div>
+</section>
+
+<main class="portal-page">
+  <div class="pulse-row">
+    <h2><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 15.5 2.5 12 2.5 8.6A4.6 4.6 0 0 1 7.1 4c2 0 3.7 1.1 4.9 3 1.2-1.9 2.9-3 4.9-3a4.6 4.6 0 0 1 4.6 4.6C21.5 12 19 15.5 12 21z" fill="#e8573a"/><path d="M5 11h4l1.5-3 2.5 6 1.5-3H19" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Pulse AI:</b> Insights &amp; Observations</h2>
+    <div id="slot-pulse"></div>
+  </div>
+  <section class="pulse">
+    <div>
+      <h3>Let Pulse AI do the hard work for you.</h3>
+      <p>We will review your dataset and present major trends and observations at the click of a button. Pulse AI has been trained on billions of data points and knows what matters most.</p>
+      <button class="gen" type="button" tabindex="-1">✦ Generate Insights</button>
+    </div>
+    <div class="ghost" aria-hidden="true">
+      <svg viewBox="0 0 620 250" preserveAspectRatio="none" fill="none">
+        <rect x="0" y="0" width="470" height="22" rx="6" fill="#e6e6e8"/><rect x="0" y="34" width="150" height="34" rx="6" fill="#e6e6e8"/><rect x="350" y="42" width="120" height="22" rx="6" fill="#e6e6e8"/><rect x="0" y="76" width="130" height="12" rx="6" fill="#e6e6e8"/>
+        <rect x="490" y="0" width="130" height="250" rx="8" fill="#eeeeef"/>
+        <g stroke="#ececee"><path d="M40 120h430M40 150h430M40 180h430M40 210h430M40 240h430"/></g>
+        <path d="M40 200l36 10 36-24 36 14 36 4 36-24 36 2 36-20 36-6 36-8 36-26 36-8" stroke="#dcdcdf" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+</main>
+</div>
+<main class="portal-page" id="view-explore" hidden>
+  <nav class="crumb" aria-label="Breadcrumb">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 12h3v9h5v-6h4v6h5v-9h3z"/></svg>
+    <a href="Home.html" data-view="home">Home</a><span>›</span><b>Explore</b>
+  </nav>
+  <div class="head">
+    <h1 class="h-navy">Explore</h1>
+    <label class="search"><input id="q" type="search" placeholder="Search" aria-label="Search reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></label>
+  </div>
+  <h2 class="group h-navy">Dashboards</h2>
+  <section class="fold">
+    <button class="fold-head" type="button" aria-expanded="true" aria-controls="foundation-rows">
+      <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="4" width="8" height="7" rx="1"/><rect x="13" y="4" width="8" height="7" rx="1"/><rect x="3" y="13" width="8" height="7" rx="1"/><rect x="13" y="13" width="8" height="7" rx="1" opacity=".55"/></svg>
+      <h3>Foundation Reporting</h3>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+    </button>
+    <ul class="rows" id="foundation-rows">
+      <li data-name="payment integrity suite"><a id="pis-link" href="Optum_Dashboard_Payment_Integrity_Suite.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 9v11"/></svg><b>Payment Integrity Suite</b></a></li>
+    </ul>
+    <p class="empty" id="none" hidden>No reports match your search.</p>
+  </section>
+</main>
+<div id="app-footer"></div>
+
+<script src="assets/app-shell.js"></script>
+<script>
+PIS.mountShell('home',{meta:true});
+/* One file, two views. The Customer/Dataset block moves: Pulse AI row on Home, header on Explore. */
+var metaEl=document.createElement('div');PIS.mountMeta(metaEl);
+var slotPulse=document.getElementById('slot-pulse'),slotHead=document.getElementById('ph-meta');
+var vHome=document.getElementById('view-home'),vExp=document.getElementById('view-explore');
+var navHome=document.querySelector('.ph-nav a[href="Home.html"]'),navExp=document.querySelector('.ph-nav a[href="Home.html#explore"]');
+function show(v,push){
+  var exp=v==='explore';
+  vHome.hidden=exp;vExp.hidden=!exp;
+  (exp?slotHead:slotPulse).appendChild(metaEl);
+  if(navHome)exp?navHome.removeAttribute('aria-current'):navHome.setAttribute('aria-current','page');
+  if(navExp)exp?navExp.setAttribute('aria-current','page'):navExp.removeAttribute('aria-current');
+  document.title=(exp?'Explore':'Welcome to Healthcare')+' \u00b7 Health Plan Manager';
+  if(push)history.replaceState(null,'',exp?'#explore':location.pathname);
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[data-view],.ph-nav a[href="Home.html"],.ph-nav a[href="Home.html#explore"]');
+  if(!a)return;
+  e.preventDefault();
+  show((a.dataset.view||(a.getAttribute('href')==='Home.html'?'home':'explore')),true);
+});
+window.addEventListener('hashchange',function(){show(location.hash==='#explore'?'explore':'home',false)});
+show(location.hash==='#explore'?'explore':'home',false);
+/* Explore view: collapse + search */
+var fhead=document.querySelector('.fold-head'),rows=document.getElementById('foundation-rows');
+fhead.addEventListener('click',function(){var o=fhead.getAttribute('aria-expanded')==='true';fhead.setAttribute('aria-expanded',!o);rows.hidden=o});
+document.getElementById('q').addEventListener('input',function(e){
+  var q=e.target.value.trim().toLowerCase(),shown=0;
+  rows.querySelectorAll('li').forEach(function(li){var ok=!q||li.dataset.name.indexOf(q)>-1;li.hidden=!ok;if(ok)shown++});
+  document.getElementById('none').hidden=shown>0;
+  if(q&&shown){rows.hidden=false;fhead.setAttribute('aria-expanded','true')}
+});
+(function(){
+  var slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dots button'),i=0;
+  function go(n){i=(n+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('on',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)})}
+  document.querySelector('.arrow.l').onclick=function(){go(i-1)};
+  document.querySelector('.arrow.r').onclick=function(){go(i+1)};
+  dots.forEach(function(d,k){d.onclick=function(){go(k)}});
+})();
+</script>
+</body>
+</html>
