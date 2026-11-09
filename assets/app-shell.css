@@ -1,0 +1,72 @@
+/* Shared shell for Login / Home / Explore.
+   Tokens, type scale, header, footer, buttons and the Customer/Dataset block
+   are copied 1:1 from Optum_Dashboard_Payment_Integrity_Suite.html so all pages look like one app. */
+*{box-sizing:border-box}
+:root{
+  --orange:#F15A24;--teal:#18A999;--blue:#2381C5;--blue-d:#1A6AA3;--blue-link:#0879B9;--blue-soft:#E7F3FA;
+  --ink:#26231f;--muted:#777168;--line:#e9e0d3;--canvas:#faf8f2;--white:#fff;--btn-border:#bfc6cc;--radius:12px;
+  --fs-xs:12px;--fs-sm:13px;--fs-md:14px;--fs-lg:16px;--fs-xl:22px;--fs-kpi:28px
+}
+html,body{margin:0}
+body{background:var(--canvas);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:13px;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--blue-link)}
+button{font-family:inherit}
+
+/* ---------- header (same as dashboard top bar) ---------- */
+.topbar{height:42px;background:#fff;border-bottom:1px solid #e5e7e9;display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:20}
+.logo-link{display:flex}.logo{width:59px;height:auto;display:block}
+.top-title{font-size:var(--fs-sm);font-weight:600;color:#41464b}
+.top-nav{display:flex;align-self:stretch;margin-left:14px}
+.top-nav a{display:flex;align-items:center;padding:0 12px;font-size:var(--fs-sm);color:#4e555d;text-decoration:none;border-bottom:2px solid transparent}
+.top-nav a:hover{color:var(--blue-link)}
+.top-nav a[aria-current=page]{color:var(--blue-link);font-weight:600;border-bottom-color:var(--blue)}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:var(--fs-sm);color:#4e555d;white-space:nowrap}
+.top-right .acct span{color:#737b84}.top-right .acct b{font-weight:600;color:#2f353b}
+.top-right .top-action{display:inline-flex;align-items:center;gap:6px;color:#4e555d;cursor:pointer}
+.top-right .top-action:hover{color:var(--blue-link)}
+.top-right .caret{width:10px;height:10px;margin-left:1px}
+.top-right .avatar{width:26px;height:26px;border-radius:50%;background:#e5edf5;color:#275a80;display:inline-grid;place-items:center;font-size:var(--fs-xs);font-weight:600;margin-right:2px}
+@media(max-width:900px){.top-right .acct,.top-right .top-action:not(.user){display:none}}
+@media(max-width:560px){.top-title{display:none}.top-nav{margin-left:4px}}
+
+/* ---------- footer (same as dashboard footer) ---------- */
+.app-footer{height:42px;display:flex;align-items:center;gap:12px;padding:0 20px;background:#fff;border-top:1px solid #e5e7e9;margin-top:auto}
+.app-footer img{width:59px;height:auto;display:block}
+.app-footer .foot-sep{width:1px;height:18px;background:#dfe2e5}
+.app-footer .foot-name{font-size:var(--fs-xs);font-weight:600;color:#41464b}
+
+/* ---------- page frame ---------- */
+.page{flex:1 0 auto;width:100%;max-width:1280px;margin:0 auto;padding:20px 24px 34px}
+.page h1{font-size:var(--fs-xl);line-height:1.25;margin:0 0 4px;font-weight:600;color:#282d32}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 2px 4px rgba(48,38,25,.04);padding:18px 20px}
+.card h2{font-size:var(--fs-lg);font-weight:600;margin:0}
+
+/* ---------- buttons (dashboard .action / .action.primary) ---------- */
+.action{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid var(--btn-border);border-radius:8px;background:#fff;color:#37414a;font-size:var(--fs-sm);cursor:pointer;text-decoration:none}
+.action:hover{background:#eef3f8}
+.action.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.action.primary:hover{background:var(--blue-d);border-color:var(--blue-d)}
+
+/* ---------- Customer / Dataset / Last Refresh block (moved here from Financial Impact) ---------- */
+.page-meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px 26px;font-size:var(--fs-xs);color:#737b84}
+.meta-item{position:relative;display:inline-flex;align-items:center;gap:5px;font-size:var(--fs-xs)}
+.meta-item strong{font-size:var(--fs-xs);font-weight:600;color:#4e555d}
+.meta-grp{position:relative;display:inline-flex;align-items:center;gap:2px}
+.meta-edit{display:inline-flex;align-items:center;gap:5px;margin-left:0;padding:2px 7px;border:0;background:none;border-radius:5px;color:#59616a;cursor:pointer;line-height:1;font-size:var(--fs-xs)}
+.meta-edit span{font-size:var(--fs-xs);font-weight:600}
+.meta-edit svg{width:16px;height:16px}
+.meta-edit:hover{background:#e8edf2;color:var(--blue-link)}
+.ms-panel{position:absolute;top:calc(100% - 4px);left:0;background:#fff;border:1px solid #cfd5db;border-radius:8px;box-shadow:0 10px 28px rgba(30,40,50,.2);z-index:40}
+.edit-panel{display:flex;gap:18px;width:min(760px,calc(100vw - 48px));padding:14px 16px}
+.ep-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column}
+.ep-title{font-size:var(--fs-xs);font-weight:700;color:#2f353b;margin-bottom:8px}
+.ep-list{max-height:300px;overflow-y:auto}
+.ms-opt{display:flex;align-items:center;justify-content:space-between;gap:9px;width:100%;padding:7px 9px;border:0;background:transparent;font-size:var(--fs-xs);font-weight:400;color:#59616a;text-align:left;cursor:pointer;border-radius:5px;white-space:nowrap}
+.ms-opt span{overflow:hidden;text-overflow:ellipsis}
+.ms-opt:hover{background:#e8f3fb}
+.ms-opt.sel{color:#2f353b}
+.ms-tick{width:14px;height:14px;flex:none;color:var(--blue)}
+@media(max-width:900px){
+  .meta-grp{position:static}.meta-host{position:relative}
+  .ms-panel{left:0;right:0;width:auto}.edit-panel{flex-direction:column}
+}
