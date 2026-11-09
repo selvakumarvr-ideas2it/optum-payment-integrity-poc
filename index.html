@@ -9,54 +9,49 @@
 /* Login-only layout. Colours, fonts, radius and buttons come from assets/app-shell.css */
 :root{--teal-d:#0F8576;--teal-soft:#E4F5F3}
 body{background:#fff}
-.login{flex:1;display:grid;grid-template-columns:minmax(360px,28%) 1fr;min-height:calc(100vh - 56px)}
+.login{flex:1;display:grid;grid-template-columns:minmax(320px,27%) 1fr;min-height:calc(100vh - 48px)}
 
 /* left: welcome + promo */
-.left{padding:34px 40px 24px;display:flex;flex-direction:column;gap:0;min-width:0}
-.left .logo{width:92px}
-.left h1{font-size:28px;font-weight:400;line-height:1.25;margin:64px 0 36px;color:var(--ink)}
-.promo{display:flex;align-items:stretch;gap:12px;margin:0 -40px;padding:0 0 0 0;overflow:hidden}
-.promo .peek{flex:none;width:36px;background:#cfe6e2;border-radius:0 6px 6px 0;height:240px}
+.left{padding:26px 30px 20px;display:flex;flex-direction:column;gap:0;min-width:0}
+.left .logo{width:70px}
+.left h1{font-size:22px;font-weight:400;line-height:1.25;margin:44px 0 26px;color:var(--ink)}
+.promo{display:flex;align-items:stretch;gap:10px;margin:0 -30px;padding:0 0 0 0;overflow:hidden}
+.promo .peek{flex:none;width:28px;background:#cfe6e2;border-radius:0 6px 6px 0;height:190px}
 .promo .peek.r{border-radius:6px 0 0 6px;margin-left:auto}
-.promo .slide{flex:1;min-width:0;height:240px;border-radius:6px;background:var(--teal-d);color:#fff;padding:30px;position:relative;overflow:hidden}
-.slide h2{font-size:var(--fs-lg);font-weight:600;line-height:1.35;margin:0 0 14px;max-width:340px;color:#fff}
-.slide p{font-size:var(--fs-xs);line-height:1.35;margin:0;max-width:170px}
-.slide .go{position:absolute;left:30px;bottom:30px;height:34px;padding:0 16px;border:0;border-radius:3px;background:#fff;color:#26231f;font-size:var(--fs-md);cursor:pointer}
-.slide .fp{position:absolute;right:26px;bottom:26px;width:110px;height:110px;color:#fff;opacity:.95}
-.notice{margin-top:54px;font-size:var(--fs-md);line-height:1.3}
-.notice .red{color:#d0021b;font-weight:600;margin:0 0 30px}
-.notice .red a{color:#1f46d6}
-.notice p{margin:0 0 26px}
-.notice .imp b.r{color:#d0021b;font-weight:600}
+.promo .slide{flex:1;min-width:0;height:190px;border-radius:6px;background:var(--teal-d);color:#fff;padding:22px;position:relative;overflow:hidden}
+.slide h2{font-size:var(--fs-md);font-weight:600;line-height:1.35;margin:0 0 10px;max-width:300px;color:#fff}
+.slide p{font-size:var(--fs-xs);line-height:1.35;margin:0;max-width:150px}
+.slide .go{position:absolute;left:22px;bottom:22px;height:30px;padding:0 14px;border:0;border-radius:3px;background:#fff;color:#26231f;font-size:var(--fs-sm);cursor:pointer}
+.slide .fp{position:absolute;right:20px;bottom:20px;width:84px;height:84px;color:#fff;opacity:.95}
 .left .copy{margin-top:auto;padding-top:28px}
 
 /* right: pattern + sign-in card */
-.right{position:relative;background-color:var(--teal-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;min-width:0}
+.right{position:relative;background-color:var(--teal-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;min-width:0}
 .right:before{content:"";position:absolute;inset:0;opacity:.9;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140' fill='none' stroke='%23c6e8e3' stroke-width='2'%3E%3Cpath d='M0 20c20-14 40 14 60 0s40-14 60 0 20 6 20 6'/%3E%3Cpath d='M0 50c20-14 40 14 60 0s40-14 60 0 20 6 20 6'/%3E%3Cpath d='M0 80c20-14 40 14 60 0s40-14 60 0 20 6 20 6'/%3E%3Cpath d='M0 110c20-14 40 14 60 0s40-14 60 0 20 6 20 6'/%3E%3Cpath d='M0 140c20-14 40 14 60 0s40-14 60 0 20 6 20 6'/%3E%3C/svg%3E")}
 .right>*{position:relative}
-.lang{align-self:center;width:400px;max-width:100%;display:flex;align-items:center;gap:8px;font-size:var(--fs-xs);color:#26231f;margin-bottom:26px}
+.lang{align-self:center;width:340px;max-width:100%;display:flex;align-items:center;gap:8px;font-size:var(--fs-xs);color:#26231f;margin-bottom:18px}
 .lang svg{width:16px;height:16px;color:var(--teal-d)}
-.signin{width:400px;max-width:100%;background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(30,40,50,.08);padding:42px 40px 30px}
-.signin h2{font-size:22px;font-weight:600;color:var(--teal-d);margin:0 0 34px}
-.signin label{display:block;font-size:var(--fs-md);margin-bottom:8px;color:var(--ink)}
-.signin input{width:100%;height:40px;padding:0 10px;border:1px solid #6c737a;border-radius:3px;font:var(--fs-md) "Segoe UI",Arial,sans-serif;color:var(--ink);background:#fff}
+.signin{width:340px;max-width:100%;background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(30,40,50,.08);padding:30px 30px 22px}
+.signin h2{font-size:var(--fs-lg);font-weight:600;color:var(--teal-d);margin:0 0 22px}
+.signin label{display:block;font-size:var(--fs-sm);margin-bottom:6px;color:var(--ink)}
+.signin input{width:100%;height:34px;padding:0 10px;border:1px solid #6c737a;border-radius:3px;font:var(--fs-sm) "Segoe UI",Arial,sans-serif;color:var(--ink);background:#fff}
 .signin input:focus{outline:2px solid var(--blue);outline-offset:1px}
-.forgot{display:inline-block;margin:26px 0 30px;font-size:var(--fs-xs);color:var(--blue-link);text-decoration:none}
+.forgot{display:inline-block;margin:18px 0 20px;font-size:var(--fs-xs);color:var(--blue-link);text-decoration:none}
 .forgot:hover{text-decoration:underline}
-.btn-continue{width:100%;height:45px;border:0;border-radius:3px;background:var(--teal-d);color:#fff;font-size:var(--fs-md);font-weight:700;cursor:pointer}
+.btn-continue{width:100%;height:38px;border:0;border-radius:3px;background:var(--teal-d);color:#fff;font-size:var(--fs-sm);font-weight:700;cursor:pointer}
 .btn-continue:hover{background:#0b6e61}
-.or{display:flex;align-items:center;gap:16px;margin:22px 0;color:#59616a;font-size:var(--fs-xs)}
+.or{display:flex;align-items:center;gap:14px;margin:16px 0;color:#59616a;font-size:var(--fs-xs)}
 .or:before,.or:after{content:"";flex:1;height:1px;background:#59616a}
-.btn-manage{width:100%;height:45px;border:1px solid var(--teal-d);border-radius:3px;background:#fff;color:var(--teal-d);font-size:var(--fs-md);cursor:pointer}
+.btn-manage{width:100%;height:38px;border:1px solid var(--teal-d);border-radius:3px;background:#fff;color:var(--teal-d);font-size:var(--fs-sm);cursor:pointer}
 .btn-manage:hover{background:var(--teal-soft)}
-.help{width:400px;max-width:100%;margin-top:12px;background:#fff;border-radius:0 0 8px 8px;box-shadow:0 2px 6px rgba(30,40,50,.08);display:flex;justify-content:space-around;padding:14px 12px}
+.help{width:340px;max-width:100%;margin-top:10px;background:#fff;border-radius:0 0 8px 8px;box-shadow:0 2px 6px rgba(30,40,50,.08);display:flex;justify-content:space-around;padding:11px 12px}
 .help a{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);color:var(--blue-link);text-decoration:none}
 .help a:hover{text-decoration:underline}
-.help svg{width:20px;height:20px}
+.help svg{width:18px;height:18px}
 
 /* footer */
-.login-foot{height:56px;display:flex;align-items:center;gap:26px;padding:0 24px;background:#fff;font-size:var(--fs-xs);color:var(--ink)}
+.login-foot{height:48px;display:flex;align-items:center;gap:22px;padding:0 24px;background:#fff;font-size:var(--fs-xs);color:var(--ink)}
 .login-foot a{color:var(--blue-link);text-decoration:none}.login-foot a:hover{text-decoration:underline}
 .login-foot .sep{width:1px;height:12px;background:#59616a;margin:0 -12px}
 .login-foot .brand{margin-left:auto;display:flex;align-items:center;gap:6px;color:#4e555d;font-size:var(--fs-sm)}
@@ -64,7 +59,7 @@ body{background:#fff}
 
 @media(max-width:900px){
   .login{grid-template-columns:1fr}
-  .left{padding:24px 20px}.left h1{margin:28px 0 22px}.promo{margin:0 -20px}.notice{margin-top:28px}
+  .left{padding:24px 20px}.left h1{margin:28px 0 22px}.promo{margin:0 -20px}
   .right{padding:28px 16px}
   .login-foot{height:auto;flex-wrap:wrap;gap:8px 18px;padding:14px 20px}.login-foot .sep{display:none}.login-foot .brand{margin-left:0}
 }
@@ -89,11 +84,6 @@ body{background:#fff}
         </svg>
       </div>
       <span class="peek r"></span>
-    </div>
-    <div class="notice">
-      <p class="red">We're experiencing high call volume - get faster assistance through our self-service and <a href="#" data-noop>help center</a> options.</p>
-      <p>If you still need assistance, contact support at 1-855-819-5909</p>
-      <p class="imp"><b class="r" style="font-weight:400">Important:</b> Ensure you have your <b>phone and recovery code</b> ready when contacting support for account verification. Support cannot assist if the required information is missing, and you may need to create a new account to regain access. <a href="#" data-noop><b>FAQs</b></a></p>
     </div>
   </section>
 

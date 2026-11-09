@@ -65,7 +65,7 @@
 
     function drawRows(){
       const s=state();
-      rows.innerHTML=`<span class="k">Customer:</span><span class="v">${esc(s.customer)}</span><span class="k">Dataset:</span><span class="v">${esc(s.dataset)}</span><span class="k">Last Refresh:</span><span class="v">${esc(lastRefresh(s.dataset))}</span>`;
+      rows.innerHTML=`<span class="k">Customer:</span><span class="v">${esc(s.customer)}</span><span class="k">Dataset:</span><span class="v">${esc(s.dataset)}</span>`;
     }
     function items(kind){
       const s=state(),base=kind==='customer'?CUSTS:DSETS,cur=s[kind],all=base.includes(cur)?base:[cur,...base];
