@@ -9,7 +9,7 @@
 /* Login-only layout. Colours, fonts, radius and buttons come from assets/app-shell.css */
 :root{--teal-d:#0F8576;--teal-soft:#E4F5F3}
 body{background:#fff}
-.login{flex:1;display:grid;grid-template-columns:minmax(320px,27%) 1fr;min-height:calc(100vh - 48px)}
+.login{flex:1;display:grid;grid-template-columns:minmax(320px,27%) 1fr;min-height:calc(100vh / var(--z,1) - 48px)}
 
 /* left: welcome + promo */
 .left{padding:26px 30px 20px;display:flex;flex-direction:column;gap:0;min-width:0}

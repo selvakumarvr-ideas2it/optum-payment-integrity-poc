@@ -8,7 +8,7 @@
   --fs-xs:12px;--fs-sm:13px;--fs-md:14px;--fs-lg:16px;--fs-xl:22px;--fs-kpi:28px
 }
 html,body{margin:0}
-body{background:var(--canvas);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:13px;min-height:100vh;display:flex;flex-direction:column}
+body{background:var(--canvas);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:13px;min-height:calc(100vh / var(--z,1));display:flex;flex-direction:column}
 a{color:var(--blue-link)}
 button{font-family:inherit}
 
