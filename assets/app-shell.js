@@ -2,11 +2,11 @@
    - PIS.state()/save()  -> {email, customer, dataset} kept in localStorage, mirrored in window.name so it survives file:// navigation
    - PIS.mountShell()    -> portal header + footer (Home, Explore)
    - PIS.mountMeta()     -> Customer / Dataset (+Edit dropdown) / Last Refresh                                       */
-/* Auto-fit: the page is designed for a 1536 x 700 browser window (a typical laptop). On bigger windows it is scaled up
+/* Auto-fit: the page is designed for a 1300 x 560 browser window (this is the look of a 1920 x 1080 screen). On bigger windows it is scaled up
    in proportion, limited by BOTH width and height (so ultrawide / short windows never get cut off), max 3.6x.
    Windows at or below the design size are never shrunk, so text stays >= 12px. It reacts to window size and browser zoom. */
 (function(){
-  var root=document.documentElement,BW=1536,BH=700,MAX=3.6;
+  var root=document.documentElement,BW=1300,BH=560,MAX=3.6;
   function fit(){
     var z=Math.min(window.innerWidth/BW,window.innerHeight/BH,MAX);
     z=Math.max(1,Math.round(z*20)/20);
